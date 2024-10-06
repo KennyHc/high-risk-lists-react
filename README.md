@@ -28,6 +28,9 @@ You may also see any lint errors in the console.
 [Enlace de documentacion en Postman](https://api-team-2546.postman.co/workspace/HighRiskLists~41314683-eee9-4dd6-a77d-a7869500a91a/collection/18392507-f3dbd408-be4f-463c-a5de-6e20a027c0db?action=share&creator=18392507/)
 
 ## Screenshots:
+## Home Page
+### ![image](https://github.com/user-attachments/assets/b564cb69-d710-49ae-866f-b6b3b1daaec9)
+
 ## Creation Page
 ### ![image](https://github.com/user-attachments/assets/d2789923-631d-47ff-9431-53835708b764)
 
