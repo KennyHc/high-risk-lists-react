@@ -22,10 +22,12 @@ import {
   Box,
   Chip,
 } from '@mui/material';
-import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Edit as EditIcon, Delete as DeleteIcon, AssessmentOutlined as RiskIcon } from '@mui/icons-material';
 import { Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { SUPPLIERS_ENDPOINT } from '../constants/apiConstants.ts';
+import RiskScreeningModal from '../components/modal/RiskScreening.tsx';
+import EditSupplier from '../components/form/EditSupplier.tsx';
 
 export interface Supplier {
   id?: number;
@@ -101,6 +103,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
     },
   }));
 
+  const ActionCell = styled(TableCell)(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+  }));
+  
+
 const SupplierTable: React.FC = () => {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [loading, setLoading] = useState(true);
@@ -108,10 +118,34 @@ const SupplierTable: React.FC = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [supplierToDelete, setSupplierToDelete] = useState<number | null>(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' as 'success' | 'error' });
+  const [riskScreeningOpen, setRiskScreeningOpen] = useState(false);
+  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
+  const [editingSupplier, setEditingSupplier] = useState<number | null>(null);
 
   useEffect(() => {
     fetchSuppliers();
   }, []);
+
+  const handleEdit = (id: number) => {
+    setEditingSupplier(id);
+  };
+
+  const handleEditClose = () => {
+    setEditingSupplier(null);
+    // Optionally refresh the supplier list here
+    fetchSuppliers();
+  };
+
+  const handleRiskScreeningClick = (supplier: Supplier) => {
+    setSelectedSupplier(supplier);
+    setRiskScreeningOpen(true);
+  };
+
+  const handleEditSuccess = (message: string) => {
+    setSnackbar({ open: true, message, severity: 'success' });
+    fetchSuppliers(); 
+  };
+
 
   const fetchSuppliers = async () => {
     try {
@@ -126,10 +160,6 @@ const SupplierTable: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleEdit = (id: number) => {
-    console.log('Edit supplier with id:', id);
   };
 
   const handleDeleteClick = (id: number) => {
@@ -219,22 +249,29 @@ const SupplierTable: React.FC = () => {
                         ? `$${supplier.annualBillingUSD.toLocaleString()}`
                         : '-'}
                     </TableCell>
-                    <TableCell align="center">
-                      <ActionButton
-                        onClick={() => supplier.id && handleEdit(supplier.id)}
-                        color="primary"
-                        size="small"
-                      >
-                        <EditIcon />
-                      </ActionButton>
-                      <ActionButton
-                        onClick={() => supplier.id && handleDeleteClick(supplier.id)}
-                        color="error"
-                        size="small"
-                      >
-                        <DeleteIcon />
-                      </ActionButton>
-                    </TableCell>
+                    <ActionCell>
+                        <ActionButton
+                            onClick={() => supplier.id && handleEdit(supplier.id)}
+                            color="primary"
+                            size="small"
+                        >
+                            <EditIcon />
+                        </ActionButton>
+                        <ActionButton
+                            onClick={() => supplier.id && handleDeleteClick(supplier.id)}
+                            color="error"
+                            size="small"
+                        >
+                            <DeleteIcon />
+                        </ActionButton>
+                        <ActionButton
+                            onClick={() => handleRiskScreeningClick(supplier)}
+                            color="secondary"
+                            size="small"
+                        >
+                            <RiskIcon />
+                        </ActionButton>
+                    </ActionCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -259,6 +296,26 @@ const SupplierTable: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {selectedSupplier && (
+        <RiskScreeningModal
+          open={riskScreeningOpen}
+          onClose={() => setRiskScreeningOpen(false)}
+          supplierName={selectedSupplier.name}
+        />
+      )}
+
+      {editingSupplier && (
+        <Dialog open={!!editingSupplier} onClose={handleEditClose} maxWidth="md" fullWidth>
+          <DialogContent>
+            <EditSupplier 
+              supplierId={editingSupplier} 
+              onClose={handleEditClose} 
+              onEditSuccess={handleEditSuccess}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
 
       <Snackbar
         open={snackbar.open}
