@@ -1,6 +1,7 @@
-
+View deployed solution at:
+[https://high-risk-lists.netlify.app/](https://high-risk-lists.netlify.app/)
+or
 ### `npm start`
-
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
