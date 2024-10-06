@@ -5,7 +5,7 @@ export interface Party {
 
 export interface Supplier extends Party {
     tradeName?: string; 
-    taxId?: number; 
+    taxId?: string; 
     phoneNumber?: string; 
     email?: string; 
     website?: string; 
