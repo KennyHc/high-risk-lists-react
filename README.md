@@ -6,7 +6,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
+## Funcionalidad
+# 1. Crear Proveedores
+# 2. Ver la lista de Proveedores
+# 3. Editar Proveedores
+# 4. Eliminar Proveedores
 
 ### Notas
 ## Base de datos SQL desplegado en Azure
