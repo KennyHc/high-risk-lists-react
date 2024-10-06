@@ -65,13 +65,13 @@ const Navbar: React.FC = () => {
         </Logo>
         <Box>
           <NavButton component={Link} to="/">
-            Home
+            Homepage
           </NavButton>
           <NavButton component={Link} to="/create">
-            Create
+            Create supplier
           </NavButton>
           <NavButton component={Link} to="/table">
-            Table
+            Table of suppliers
           </NavButton>
         </Box>
       </StyledToolbar>
