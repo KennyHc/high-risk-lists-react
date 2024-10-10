@@ -7,26 +7,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-## Funcionalidad
-### 1. Crear Proveedores
-### 2. Ver la lista de Proveedores
-### 3. Editar Proveedores
-### 4. Eliminar Proveedores
+## Functionality
+### 1. Create Suppliers
+### 2. Load supplier list
+### 3. Edit supplier fields
+### 4. Delete suppliers
 
-## Notas
-## Base de datos SQL desplegado en Azure
+## Notes
+## SQL Database hosted on Azure
 [https://highrisklists.azurewebsites.net/](https://highrisklists.azurewebsites.net/)
 
-- Se esta usando el free tier, por ende en su primera carga, se esta prendiendo la base de datos que se apaga periodicamente
+- Since the free tier is in use, the first load would have to boot up the SQL server, which will take longer.
 
-## ASP.NET Backend desplegado en Azure
+## ASP.NET Backend hosted in Azure
 [https://highrisklists.azurewebsites.net/api/suppliers/](https://highrisklists.azurewebsites.net)
 
-- Demora en primera carga, misma razon
+- First load is slow, same reason.
 
 ## Postman
-- Documentacion de Postman
-[Enlace de documentacion en Postman](https://api-team-2546.postman.co/workspace/HighRiskLists~41314683-eee9-4dd6-a77d-a7869500a91a/collection/18392507-f3dbd408-be4f-463c-a5de-6e20a027c0db?action=share&creator=18392507/)
+- Postman documentation
+[Postan Documentation Link](https://api-team-2546.postman.co/workspace/HighRiskLists~41314683-eee9-4dd6-a77d-a7869500a91a/collection/18392507-f3dbd408-be4f-463c-a5de-6e20a027c0db?action=share&creator=18392507/)
 
 ## Screenshots:
 ## Home Page
